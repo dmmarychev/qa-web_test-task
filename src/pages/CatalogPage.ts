@@ -18,8 +18,12 @@ class CatalogPage {
         return this.page.getByTestId('gridCheck');
     }
 
+    get activePageItem() {
+        return this.page.locator('[aria-label="Page navigation"]').locator('.page-item.active');
+    }
+
     get pageItem() {
-        return this.page.locator('.page-link');
+        return this.page.locator('[aria-label="Page navigation"]').locator('.page-item');
     }
 
     clickShowOnlyDiscountedProductsCheckbox = () =>

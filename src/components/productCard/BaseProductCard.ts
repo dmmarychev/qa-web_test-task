@@ -8,7 +8,7 @@ class BaseProductCard {
     }
 
     get productCardContainer() {
-        return this.page.locator('.note-item');
+        return this.page.locator('.note-list.row').locator('.note-item');
     }
 
     get fullPriceProductCardContainer() {
@@ -31,9 +31,23 @@ class BaseProductCard {
         return this.page.locator('.product_price');
     }
 
+    get productCount() {
+        return this.page.locator('.product_count');
+    }
+
+    get productCountInput() {
+        return this.page.locator('[name="product-enter-count"]');
+    }
+
     get buyButton() {
         return this.page.locator('.actionBuyProduct');
     }
+
+    fillProductCountInput = async (productContainer: Locator, count: string) => {
+        await productContainer.locator(this.productCountInput).dblclick();
+        await productContainer.locator(this.productCountInput).pressSequentially(count);
+    }
+
 
 
     clickBuyProductButton = (productContainer: Locator) =>
@@ -52,6 +66,8 @@ class BaseProductCard {
         return resultPrice;
     }
 
+    getProductCount = (productContainer: Locator) =>
+        productContainer.locator(this.productCount).textContent();
 }
 
 export { BaseProductCard }

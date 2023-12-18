@@ -32,6 +32,8 @@ const openBasketWithOneProduct = async (page: CatalogPage, isDiscounted: boolean
     await expect(basketMenu.totalBasketPrice).toContainText(productPrice);
 
     await basketMenu.clickGoToBasketPageButton();
+
+    await expect(page.page.locator('.site-error')).toHaveCount(0);
 }
 
 
